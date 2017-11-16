@@ -1,0 +1,16 @@
+version: '2'
+services:
+  app2:
+    image: 0ne1rue/php7.1-fpm-dev-app
+    volumes:
+      - /var/www
+      - ~/.ssh:/root/.ssh
+  web:
+    image: 0ne1rue/php7.1-fpm-dev-web
+    working_dir: /var/www
+    volumes_from:
+      - app2
+    ports:
+      - 8080:80
+    environment:
+      - "APP_HOST=app2"
