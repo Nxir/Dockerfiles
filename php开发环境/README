@@ -1,0 +1,21 @@
+## 该组镜像为部署php开发环境而建,内部使用git来更新代码
+
+## 使用方法
+
+启动容器
+
+docker-composer -t docker-composer.yml up
+
+使用脚本初始化laravel项目
+
+docker exec -it container-id init-laravel-project git项目地址 要更名为.env文件的文件名
+
+(脚本将会clone项目,修改特定的目录权限,创建.env文件,执行composer install)
+
+访问项目 localhost:8080
+
+### 更新代码
+docker exec container-id git pull
+
+### 修改Nginx PHP解析所用主机
+默认配置使用app为php主机名,使用环境变量APP_HOST来修改主机名
